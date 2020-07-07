@@ -145,7 +145,7 @@ class App extends Component {
       albumName: "Loading...",
       playing: false,
       albumArt: "",
-      mood: "",
+      sign: "",
     };
     this.playerCheckInterval = null;
     this.handleChange = this.handleChange.bind(this);
@@ -163,8 +163,8 @@ class App extends Component {
   }
 
   checkForPlayer() {
-    const { token, mood } = this.state;
-    if (window.Spotify !== null && mood) {
+    const { token, sign } = this.state;
+    if (window.Spotify !== null && sign) {
       clearInterval(this.playerCheckInterval);
 
       this.player = new window.Spotify.Player({
@@ -227,24 +227,24 @@ class App extends Component {
   }
 
   transferPlaybackHere() {
-    const { deviceId, token, mood} = this.state;
+    const { deviceId, token, sign} = this.state;
     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ "context_uri": mood}),
+      body: JSON.stringify({ "context_uri": sign}),
     });
   }
 
   handleChange(event) {
     if (event.target.value === "capricorn") {
-      this.setState({mood: "spotify:playlist:37i9dQZF1DXdPec7aLTmlC"}); //Happy Hits Playlist
+      this.setState({sign: "spotify:playlist:37i9dQZF1DXdPec7aLTmlC"}); //capricorn Hits Playlist
     } else if (event.target.value === "aries") {
-      this.setState({mood: "spotify:playlist:37i9dQZF1DX3YSRoSdA634"}); //Life Sucks Playlist
+      this.setState({sign: "spotify:playlist:37i9dQZF1DX3YSRoSdA634"}); //aries Sucks Playlist
     } else {
-      this.setState({mood: "spotify:playlist:37i9dQZF1DX3ND264N08pv"}); //Rage Beats Playlist
+      this.setState({sign: "spotify:playlist:37i9dQZF1DX3ND264N08pv"}); //Rage Beats Playlist
     }
   }
 
@@ -257,7 +257,7 @@ class App extends Component {
       albumName,
       playing,
       albumArt,
-      mood,
+      sign,
     } = this.state;
 
     return (
@@ -266,14 +266,25 @@ class App extends Component {
           <div className="Web-header">
             Moon Tunes
           </div>
-          {(!mood && token) && (
+          {(!sign && token) && (
               <form>
                 <div className={"label"}><br/>Select your sign</div><br/>
-                <input type="button" className={"mood"} value={"capricorn"} onClick={this.handleChange}/><br/><br/>
-                <input type="button" className={"mood"} value={"aries"} onClick={this.handleChange}/><br/><br/>
-                <input type="button" className={"mood"} value={"pisces"} onClick={this.handleChange}/>
+                <input type="button" className={"sign"} value={"Aires"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Tarus"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Gemini"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Cancer"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Leo"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Virgo"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Libra"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Scopio"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Sagittarius"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Capricorn"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Aquarius"} onClick={this.handleChange}/><br/><br/>
+                <input type="button" className={"sign"} value={"Pieces"} onClick={this.handleChange}/><br/><br/>
+
+
           </form>)}
-          {(mood && token) && (<div>
+          {(sign && token) && (<div>
             <div className="App-header" id="loggedIn">
               <h2>Now Playing</h2>
               <img className="album" alt={"Loading Album Cover..."} src={albumArt} />
