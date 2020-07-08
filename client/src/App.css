@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Material+Icons", "Kodchasan", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+h2 {
+  font-family: 'Nova Mono', monospace;
+}
+h4 {
+  color: #ffffff;
+  text-align: center;
+}
+label {
+  margin-top: 5rem;
+  display: block;
+  text-align: center;
+  line-height: 100%;
+}
+input {
+  display: block;
+  text-align: center;
+  border-bottom-color: rgb(255, 255, 255) !important;
+}
+button {
+  display: block !important;
+  margin: auto !important;
+}
+
+.particles {
+  z-index: -10;
+  top: 0;
+  left: 0;
+}
+.active {
+  background-color: rgb(15, 15, 15) !important;
+}
